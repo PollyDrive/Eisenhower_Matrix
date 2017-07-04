@@ -1,0 +1,5 @@
+*.jpg
+*.png
+app/assets/img/
+
+node_modules/
