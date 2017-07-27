@@ -1,12 +1,13 @@
-body{
+*{
 	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+	// margin: 0;
+	// padding: 0;
 }
 .header{
-	color: #555;
-	background-color: #f7f7f7;
-	padding: 2em;
+    color: #555;
+    background: linear-gradient(to bottom, #fff, #e4e0e0);
+    border-bottom: 1px solid #ddd;
+    padding: 2em;
 }
 .header__text{
 	font-size: 2em;
@@ -22,16 +23,17 @@ body{
 	// grid-template-rows: 200px  200px;
 	background-color: #fff;
 	padding: 2.5em;
+	cursor: pointer;
 }
 .matrix__square{
-	cursor: pointer;
+	
 	display: grid;
 	grid-column: square;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 }
 .quadrant{
-	cursor: pointer;
+	
 	height: 400px;
 	max-width: 400px;
 	transition: all 0.8s ease;
@@ -97,14 +99,16 @@ body{
 	display: none;
 	padding: 30px 10px;
     text-align: center;
+    transform: scaleX(-1);
 
     input{
+    	cursor: pointer;
     	border: 1px solid rgba(221, 221, 221, 0.32);
-    	width: 80%;
+    	width: 100%;
     	height: 28px;
     	border-radius: 3px;
     	margin: 10px 0;
-	    transform: scaleX(-1);
+	    
 	    padding: 5px;
 	    font-size: 20px;
 	    transition: all 0.5s ease;
@@ -114,9 +118,26 @@ body{
 	display: block;
 }
 .quadrant__forms-explain{
-	transform: scaleX(-1);
 	font-size: 23px;
 	font-family: fantasy;
 	color: #edf9f1;
 	margin-bottom: 15px;
+}
+.quadrant__input{
+	padding: 0 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}
+.successBtn{
+	border: 1px solid #bb5f6a;
+    border-radius: 3px;
+    height: 25px;
+    font-family: inherit;
+    font-size: large;
+    background-color: #e0baba;
+
+}
+.successBtn:active{
+	
 }

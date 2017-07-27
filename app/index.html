@@ -8,25 +8,25 @@
 <body>
 <section class="header">
 	<div class="header__text">
-		<span> Eisenhower Matrix </span>
+		 Eisenhower Matrix 
 	</div>
 	<div class="header__text_sm">for desperate procrastinators</div>
 </section>
 <section class="matrix">
 	<div class="matrix__square">
-		<div class="quadrant quadrant_1k">
+		<div id="importantUrgentCategoryBlock" class="quadrant quadrant_1k">
 			<span>ВАЖНО СРОЧНО</span>
 			<div class="quadrant__forms">
 			<div class="quadrant__forms-explain">Главное, что нужно сделать сегодня</div>
 				<form>
-					<input type="text" name="">
+					<input type="text" name="" id="importantUrgentlyQuadrant">
 					<input type="text" name="">
 					<input type="text" name="">
 					<input type="text" name="">
 				</form>
 			</div>
 		</div>
-		<div class="quadrant quadrant_2k">
+		<div id="importantNotUrgentCategoryBlock" class="quadrant quadrant_2k">
 			<span>ВАЖНО НЕСРОЧНО</span>
 			<div class="quadrant__forms">
 			<div class="quadrant__forms-explain">То, о чем ты мечтаешь</div>
@@ -38,19 +38,22 @@
 				</form>
 			</div>
 		</div>
-		<div class="quadrant quadrant_3k">
+		<div id="notImportantUrgentCategoryBlock" class="quadrant quadrant_3k">
 			<span>НЕВАЖНО СРОЧНО</span>
 			<div class="quadrant__forms">
 			<div class="quadrant__forms-explain">Сделай уже это быстрее, и забудь</div>
-				<form>
+				<form action="">
+				<div class="quadrant__input">
+					<input type="text" name="" value="">
+					<button type="submit" class="successBtn">Сохранить</button>
+				</div>
+					<!-- <input type="text" name="">
 					<input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name="">
+					<input type="text" name=""> -->
 				</form>
 			</div>
 		</div>
-		<div class="quadrant quadrant_4k">
+		<div id="notImportantNotUrgentCategoryBlock" class="quadrant quadrant_4k">
 			<span>НЕВАЖНО НЕСРОЧНО</span>
 			<div class="quadrant__forms">
 			<div class="quadrant__forms-explain">То, что ты и так постоянно делаешь</div>
@@ -65,5 +68,7 @@
 		</div>
 	</div>
 </section>
+
+<script type="" src="../js/common.js"></script>
 </body>
 </html>
