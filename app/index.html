@@ -4,6 +4,7 @@
 	<title>Matrix</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <section class="header">
@@ -14,56 +15,72 @@
 </section>
 <section class="matrix">
 	<div class="matrix__square">
-		<div id="importantUrgentCategoryBlock" class="quadrant quadrant_1k">
-			<span>ВАЖНО СРОЧНО</span>
-			<div class="quadrant__forms">
-			<div class="quadrant__forms-explain">Главное, что нужно сделать сегодня</div>
-				<form>
-					<input type="text" name="" id="importantUrgentlyQuadrant">
-					<input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name="">
+		<div id="importantUrgentCategoryBlock" class="quadrant quadrant_1k ">
+			<span class="quadrant__title hidden">ВАЖНО СРОЧНО</span>
+			<div class="quadrant__forms ">
+				<div class="quadrant__forms-explain">Главное, что нужно сделать сегодня</div>
+				<form action="" class="quadrant__forms-tasks">
+					<div class="quadrant__input-wr">
+						<input class="quadrant__input" type="text" name="" value="">
+<!-- 						<button type="submit" class="successBtn">Удалить</button>
+						<button type="submit" class="successBtn">Редактировать</button> -->
+						<button type="submit" class="successBtn">Сохранить</button>
+					</div>
+<!-- 					<div class="quadrant__task-field">
+						<div class="quadrant__task-field-icons">
+							<span class="quadrant__task-field-icon_save">
+								<i class="material-icons">check_circle</i>
+							</span>
+							<span class="quadrant__task-field-icon_edit">
+								<i class="material-icons">mode_edit</i>
+							</span>
+							<span class="quadrant__task-field-icon_delete">
+								<i class="material-icons">cancel</i>
+							</span>
+						</div>
+					</div> -->
 				</form>
 			</div>
 		</div>
 		<div id="importantNotUrgentCategoryBlock" class="quadrant quadrant_2k">
-			<span>ВАЖНО НЕСРОЧНО</span>
-			<div class="quadrant__forms">
-			<div class="quadrant__forms-explain">То, о чем ты мечтаешь</div>
-				<form>
-					<input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name="">
+			<span class="quadrant__title  ">ВАЖНО НЕСРОЧНО</span>
+			<div class="quadrant__forms hidden">
+				<div class="quadrant__forms-explain">То, о чем ты мечтаешь</div>
+				<form action="" class="quadrant__forms-tasks">
+					<div class="quadrant__input-wr">
+						<input class="quadrant__input" type="text" name="" value="" >
+						<button type="submit" class="successBtn">Сохранить</button>
+					</div>
+<!-- 					<div class="quadrant__task-field"></div> -->
 				</form>
 			</div>
 		</div>
 		<div id="notImportantUrgentCategoryBlock" class="quadrant quadrant_3k">
-			<span>НЕВАЖНО СРОЧНО</span>
-			<div class="quadrant__forms">
-			<div class="quadrant__forms-explain">Сделай уже это быстрее, и забудь</div>
-				<form action="">
-				<div class="quadrant__input">
-					<input type="text" name="" value="">
+			<span class="quadrant__title">НЕВАЖНО СРОЧНО</span>
+			<div class="quadrant__forms hidden">
+				<div class="quadrant__forms-explain">Сделай уже это быстрее, и забудь</div>
+				<form action="" class="quadrant__forms-tasks">
+				<div class="quadrant__input-wr">
+					<input class="quadrant__input" type="text" name="" value="">
 					<button type="submit" class="successBtn">Сохранить</button>
 				</div>
-					<!-- <input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name=""> -->
+<!-- 				<div class="quadrant__task-field"></div> -->
 				</form>
 			</div>
 		</div>
 		<div id="notImportantNotUrgentCategoryBlock" class="quadrant quadrant_4k">
-			<span>НЕВАЖНО НЕСРОЧНО</span>
-			<div class="quadrant__forms">
-			<div class="quadrant__forms-explain">То, что ты и так постоянно делаешь</div>
-				<form>
-					<input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name="">
-					<input type="text" name="">
+			<span class="quadrant__title">НЕВАЖНО НЕСРОЧНО</span>
+			<div class="quadrant__forms hidden">
+				<div class="quadrant__forms-explain">То, что ты и так постоянно делаешь</div>
+				<form action="" class="quadrant__forms-tasks">
+					<div class="quadrant__input-wr">
+						<input class="quadrant__input" type="text" name="" value="">
+						<button type="submit" class="successBtn">Сохранить</button>
+					</div>
+					<!-- <div class="quadrant__task-field">
+					</div> -->
 				</form>
-				<div class="quadrant__forms-explain">И больше не надо</div>
+<!-- 				<div class="quadrant__forms-explain">И больше не надо</div> -->
 			</div>
 		</div>
 	</div>

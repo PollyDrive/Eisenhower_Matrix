@@ -26,18 +26,20 @@
 	cursor: pointer;
 }
 .matrix__square{
-	
 	display: grid;
 	grid-column: square;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
 }
 .quadrant{
-	
-	height: 400px;
-	max-width: 400px;
+	height: 460px;
+	max-width: 460px;
 	transition: all 0.8s ease;
-	span{
+	position: relative;
+	display: flex;
+    align-items: center;
+}
+.quadrant__title{
     font-size: 5.6em;
     font-family: fantasy;
     font-weight: bold;
@@ -47,41 +49,32 @@
     opacity: 0.3;
     display: flex;
     padding: 80px 0;
-	}
+        // transition: all 0.1s ease;
 }
-.quadrant:hover{
-	transform: scaleX(-1);
-    transition: all 1s ease;
-    background-color: darker(20%);
-	span{
-		display: none;
-	}
-}
-.quadrant:focus, .quadrant:active{
-	span{
-		display: none;
-	}
 
+.animation{
+    transition: all 1.2s ease;
+    opacity: 9;
 }
+
 .quadrant_1k{
 	background-color: #4cbf73;
-	input{
-		background-color: #bfe0ca;
-	}
+	// input{
+	// 	background-color: #bfe0ca;
+	// }
 }
 
 .quadrant_2k{
 	background-color: #68a9ca;
-	input{
-		background-color: #d7e4ec;
-	}
+	// input{
+	// 	background-color: #d7e4ec;
+	// }
 }
 .quadrant_3k{
 	background-color: #d84557;
-	input{
-		background-color: #e0baba;
-
-	}
+	// input{
+	// 	background-color: #e0baba;
+	// }
 }
 .quadrant_4k{
 	background-color: #ebff6f;
@@ -91,31 +84,37 @@
 	.quadrant__forms-explain{
 		color: #777;
 	}
-	input{
-		background-color: #f5f3e7;
-	}
+	// input{
+	// 	background-color: #f5f3e7;
+	// }
 }
 .quadrant__forms{
-	display: none;
-	padding: 30px 10px;
+	z-index: 1;
+	padding: 15px 10px;
     text-align: center;
-    transform: scaleX(-1);
+    position: absolute;
+    top: 1%;
 
-    input{
-    	cursor: pointer;
-    	border: 1px solid rgba(221, 221, 221, 0.32);
-    	width: 100%;
-    	height: 28px;
-    	border-radius: 3px;
-    	margin: 10px 0;
-	    
-	    padding: 5px;
-	    font-size: 20px;
-	    transition: all 0.5s ease;
-    }
 }
-.quadrant:hover .quadrant__forms{
-	display: block;
+.quadrant__input{
+	cursor: pointer;
+	border: 1px solid rgba(221, 221, 221, 0.32);
+	background-color: #f7f7f7;
+	width: 100%;
+	min-height: 35px;
+	border-radius: 3px;
+    // padding: 5px;
+    font-size: 20px;
+    overflow: hidden;
+}
+// .quadrant:hover .quadrant__forms{
+// 	display: block;
+// }
+.hidden{
+	visibility: hidden;
+}
+.visible{
+	visibility: visible;
 }
 .quadrant__forms-explain{
 	font-size: 23px;
@@ -123,21 +122,71 @@
 	color: #edf9f1;
 	margin-bottom: 15px;
 }
-.quadrant__input{
+.quadrant__input-wr{
 	padding: 0 20px;
+	margin: 20px 0 3px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-end;
+    justify-content: space-between;
+    flex-shrink: 1;
+    overflow: hidden;
 }
 .successBtn{
-	border: 1px solid #bb5f6a;
-    border-radius: 3px;
+	border: 1px solid rgba(225, 225, 225, 0.2);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
     height: 25px;
+    margin-top: 3px;
     font-family: inherit;
     font-size: large;
-    background-color: #e0baba;
+    background-color: rgba(225, 225, 225, 0.5);
 
 }
-.successBtn:active{
-	
+.successBtn:before{	
+}
+.quadrant__task-field{
+	display: flex;
+    align-items: center;
+    cursor: pointer;
+	border: 1px solid rgba(221, 221, 221, 0.32);
+	width: 90%;
+	border-radius: 3px;
+	margin: 40px 20px 15px;
+	min-height: 35px;
+    // padding: 5px;
+    font-size: 20px;
+    position: relative;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: #333;
+	text-align: left;
+	font-family: Arial;
+	font-size: 20px;
+	max-width: 340px;
+	border-top-right-radius: 2px;
+	input{
+		
+
+	}
+}
+.quadrant__task-field-icons{
+	// display: none;
+    position: absolute;
+    top: -35px;
+    right: -1px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 2px 2px 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    i{
+    	color: rgba(119, 119, 119, 0.58);
+    }
+    i:hover{
+    	color: #666;
+    }
+}
+.quadrant__task-field-icon_edit{
+	right: 30px;
+}
+.quadrant__task-field-icon_save{
+	right: 60px;
 }
