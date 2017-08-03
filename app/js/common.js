@@ -94,7 +94,7 @@ function addTaskToList(task, form) {
 	
 	div.addEventListener('click',function(e){
 		e.preventDefault();
-		editTask(form, div, span);
+		editTask(form, div, span, task);
 	});
 	return true;
 };
@@ -105,15 +105,14 @@ function addTaskToList(task, form) {
 	и новая кнопка "сохранить"+
 	редактируется див только при наведении фокуса, как фокус уходит - див сохраняется в таком же состоянии
 
-	кнопка проверяет наличие таких же тасков,
-	 пустую строку +
-	сохраняет текст из инпута в диве +
+	кнопка проверяет наличие таких же тасков +, но если это свежесозданный таск, его не получается добавить, не редактируя(уже есть в массиве активных)
+	пустую строку +
+	сохраняет текст из инпута в диве 
 	и замещает инпут на див
-	разобраться с forEach, проверка должна быть только в конкретной категории
-	и не должна вызывать addToList, т.к. та ссылается на нее
-	либо вынести отдельно клик на новую кнопку сохранения
+	разобраться с forEach, проверка должна быть только в конкретной категории +
+	и не должна вызывать addToList, т.к. та ссылается на нее +
 */
-function editTask(parentForm, oldTask, oldTaskText){
+function editTask(parentForm, oldTask, oldTaskText, taskObj){
 	var editTaskInputWrapper = document.createElement('div');
 	editTaskInputWrapper.className = 'quadrant__input-wr';
 	var editTaskInput = document.createElement('input');
@@ -125,27 +124,24 @@ function editTask(parentForm, oldTask, oldTaskText){
 	editTaskInputButton.textContent = 'Сохранить';
 	editTaskInputWrapper.append(editTaskInput);
 	editTaskInputWrapper.append(editTaskInputButton);
-	console.dir(editTaskInputWrapper);
-	// parentElem.replaceChild(newElem, elem)
-	// form.replaceChild()
-	// div.replaceChild(editTaskInput, span);
 	parentForm.replaceChild(editTaskInputWrapper, oldTask);
+
 	// console.dir(editTaskInput);
-		editTaskInputButton.addEventListener('click', function (e) {
+	editTaskInputButton.addEventListener('click', function (e) {
 		e.preventDefault();
-			categoriesArr.forEach(function(categoryObj){
-			if (editTaskInput.value.length < 1){
-				return false;
-			}
-			disallow = checkTaskInAllQuadrants(editTaskInput.value, categoryObj);
-			if (disallow) {
-				console.log(disallow);
-				return false;
-			} else{
-				task = createTask(editTaskInput.value, categoryObj);
-				addTaskToList(task, parentForm);
-			};
-		});
+		if (editTaskInput.value.length < 1){
+			return false;
+		};
+		disallow = checkTaskInAllQuadrants(editTaskInput.value);
+		if (disallow) {
+			console.log(disallow);
+			return false;
+		} else {
+			taskObj.text = editTaskInput.value;
+			oldTaskText.innerText = taskObj.text;
+		    parentForm.replaceChild(oldTask, editTaskInputWrapper);
+			return true;
+		};
 	});
 	return ;
 };
@@ -223,7 +219,7 @@ function alreadyInTask(category, inputValue){
 	return result;
 };
 
-function checkTaskInAllQuadrants(inputValue, category){
+function checkTaskInAllQuadrants(inputValue){
 	var checkAllResult = false;
 	categoriesArr.forEach(function(category){
 		var alreadyResult = alreadyInTask(category, inputValue);

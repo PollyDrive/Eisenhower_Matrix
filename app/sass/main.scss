@@ -3,6 +3,10 @@
 	// margin: 0;
 	// padding: 0;
 }
+body{
+	margin: 0;
+	padding: 0;
+}
 .header{
     color: #555;
     background: linear-gradient(to bottom, #fff, #e4e0e0);
@@ -189,4 +193,74 @@
 }
 .quadrant__task-field-icon_save{
 	right: 60px;
+}
+.edit__pop-up-wr{
+	position: relative;
+	height: 100%;
+}
+.edit__pop-up-bg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.3)
+}
+.edit__pop-up{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%);
+	z-index: 100;
+	width: 470px;
+	background-color: #f3f3f3;
+	border-radius: 5px;
+	padding: 1em;
+	line-height: 1.62;
+}
+.edit__pop-up-header{
+	display: flex;
+	align-items: center;
+	background-color: #FFF;
+	box-shadow: inset 0 1px 3px 1px #eee;
+	padding: 0 7px;
+}
+.edit__pop-up-title{
+	font-size: 25px;
+	padding: 0 7px;
+}
+.edit__pop-up-body{
+	flex-flow: row wrap;
+	line-height: 1.6;
+	padding: 1em;
+	font-size: 18px;
+	color: #666;
+}
+.wrapper{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.right{
+	color: #444;
+	font-size: 18px;
+}
+.edit-link{
+	font-size: 14px;
+	color: #999;
+	text-decoration: none;
+}
+.edit-link:hover{
+	color: #333;
+}
+.edit__pop-up-time{
+	padding: 0 7px;
+}
+.edit__pop-up-date-status{
+    border: 1px solid #f3d652;
+    padding: 0 3px;
+    background-color: #f7de6b;
+    color: #fff;
+    border-radius: 3px;
+    margin: 5px 0;
 }
