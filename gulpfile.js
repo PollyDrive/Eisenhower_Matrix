@@ -4,7 +4,7 @@ var gulp = require('gulp'),
 
 
 gulp.task('sass', function(){
-	return gulp.src('app/sass/main.scss')
+	return gulp.src('app/sass/*.scss')
 		.pipe(sass())
 		.pipe(gulp.dest('app/css'))
 		.pipe(browserSync.reload({stream: true}))

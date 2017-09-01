@@ -1,17 +1,21 @@
 var importantUrgentCategory = {
 	name: 'importantUrgentCategory',
+	russianName: 'Важно и срочно',
 	activeTasks: []
 }
 var importantNotUrgentCategory =  {
 	name: 'importantNotUrgentCategory',
+	russianName: 'Важно, но не срочно',
 	activeTasks: []	
 }
 var notImportantUrgentCategory = {
 	name: 'notImportantUrgentCategory',
+	russianName: 'Неважно, но срочно',
 	activeTasks: []
 }
 var notImportantNotUrgentCategory =  {
 	name: 'notImportantNotUrgentCategory',
+	russianName: 'Неважно и несрочно',
 	activeTasks: []
 }
 
@@ -98,17 +102,18 @@ function addTaskToList(task, form) {
 	});
 	return true;
 };
-/*6.4.1 в див добавляется инпут
+/*6.4.1 в див добавляется инпут +
 	создать функцию редактирования задачи+
 	в ней создается новый инпут+
 	c value, равным тексту из дива+
 	и новая кнопка "сохранить"+
-	редактируется див только при наведении фокуса, как фокус уходит - див сохраняется в таком же состоянии
 
+	редактируется див только при наведении фокуса, как фокус уходит - див сохраняется в таком же состоянии (unfocus)
 	кнопка проверяет наличие таких же тасков +, но если это свежесозданный таск, его не получается добавить, не редактируя(уже есть в массиве активных)
+
 	пустую строку +
-	сохраняет текст из инпута в диве 
-	и замещает инпут на див
+	сохраняет текст из инпута в диве +
+	и замещает инпут на див +
 	разобраться с forEach, проверка должна быть только в конкретной категории +
 	и не должна вызывать addToList, т.к. та ссылается на нее +
 */
@@ -126,7 +131,6 @@ function editTask(parentForm, oldTask, oldTaskText, taskObj){
 	editTaskInputWrapper.append(editTaskInputButton);
 	parentForm.replaceChild(editTaskInputWrapper, oldTask);
 
-	// console.dir(editTaskInput);
 	editTaskInputButton.addEventListener('click', function (e) {
 		e.preventDefault();
 		if (editTaskInput.value.length < 1){
@@ -134,7 +138,7 @@ function editTask(parentForm, oldTask, oldTaskText, taskObj){
 		};
 		disallow = checkTaskInAllQuadrants(editTaskInput.value);
 		if (disallow) {
-			console.log(disallow);
+			// console.log(disallow);
 			return false;
 		} else {
 			taskObj.text = editTaskInput.value;
@@ -145,6 +149,54 @@ function editTask(parentForm, oldTask, oldTaskText, taskObj){
 	});
 	return ;
 };
+//по нажатию на иконку редактирования открывает поп-ап - добавляет -wr класс visible+
+//закрывается поп-ап по нажатию на кнопку "закрыть" или темную область+
+// при закрытии попапа поле инпута должно превращаться в див
+
+
+function openTaskPopup(event){
+	var icon = event.target;
+	var taskInputforEditing = icon.parentNode.parentNode.parentNode;
+	var textFromTask = taskInputforEditing.firstChild;
+	var taskPopupWrapper = document.querySelector('#taskPopupWrapper');
+	var taskPopupBg = document.querySelector('.edit__pop-up-bg');
+	var taskPopup = document.querySelector('#taskPopup');
+	var popupTitle = document.querySelector('.edit__pop-up-title');
+	document.body.classList.add('overflow');
+	taskPopupWrapper.classList.add('visible');
+	taskPopupBg.addEventListener('click', function(e){
+		if(e.target.classList.contains('edit__pop-up-bg')){
+			taskPopupWrapper.classList.remove('visible');
+			document.body.classList.remove('overflow');
+		} else{
+			return false;
+		}
+	});
+	// console.dir(taskTextforPopup);
+	addDataToPopup(popupTitle, textFromTask);
+}
+/*
+	Передать значение текста задачи в заголовок +
+	названия категории в категорию
+	добавить дату создания
+	статус
+	предполагаемую дату
+	дату выполнения
+*/
+function addDataToPopup(title, text){
+	//заголовок +
+	title.innerText = text.innerText
+	// категория +
+	var popupCategory = document.querySelector('.edit__pop-up-category');
+	categoriesArr.forEach(function(categoryObj){
+		var found = categoryObj.activeTasks;
+		found.forEach(function(activeTaskObj){
+			if(activeTaskObj.text === title.innerText){
+				popupCategory.innerText = categoryObj.russianName;
+			}
+		});
+	});
+};
 
 var deleteTask = function deleteTask(event){
 	var icon = event.target;
@@ -154,7 +206,6 @@ var deleteTask = function deleteTask(event){
 	divForDelete.parentNode.removeChild(divForDelete);
 	deleteTaskFromActiveTasks(textForDelete)
 };
-
 
 function deleteTaskFromActiveTasks(taskTextToDelete) {
 	categoriesArr.forEach(function(categoryObj){
@@ -175,10 +226,10 @@ function deleteTaskFromActiveTasks(taskTextToDelete) {
 4 на нет и суда нет
 */
 
-function addIconToContainer(){
+function addIconToContainer(taskObj, categoryObj){
 	iconDone = createIcon('check_circle', 'doneTask' ,'quadrant__task-field-icon_done');
-	iconEdit = createIcon('mode_edit','editTask','quadrant__task-field-icon_edit');
-	iconDelete = createIcon('cancel', deleteTask ,'quadrant__task-field-icon_delete');
+	iconEdit = createIcon('mode_edit', openTaskPopup,'quadrant__task-field-icon_edit');
+	iconDelete = createIcon('cancel', deleteTask,'quadrant__task-field-icon_delete');
 	var divIcons = document.createElement('div');
 	divIcons.className = 'quadrant__task-field-icons';
 	divIcons.append(iconDone);
@@ -208,7 +259,6 @@ function alreadyInTask(category, inputValue){
 	// и в каждом цикле сравить inputValue === tasks.text
 	// если нашли возвращать из alreadyInTask true
 	// если не нашливозвращаем false
-
 	var result = false;
 	category.activeTasks.forEach(function(task){
 		if(inputValue === task.text){
@@ -229,9 +279,6 @@ function checkTaskInAllQuadrants(inputValue){
 	});
 	return checkAllResult;
 };
-
-
-
 
 
 // 2 вывести в консоль объект категории, в котором будет новоиспеченная задача+
@@ -257,7 +304,7 @@ function checkTaskInAllQuadrants(inputValue){
   6.4.3 невидима панель с иконками
   6.4.4 при наведении на див панель с иконками всплывает
   6.4 при клике на иконку "edit", появляетс модалка
-  6.5 при нажатии на enter  или иконку сохранения, value сохраняется в div */
+  6.5 при нажатии на enter  или кнопку сохранения, value сохраняется в div+ */
  
 // 7. При клике на иконку done задание становится выполненным   
 // ?. Активировать все квадранты +
